@@ -7,14 +7,12 @@
 </p-floatlabel>
 
 <div class="mt-clinic-list__container">
-  <app-clinic-card [clinicName]="'Przychodnia Specjalistyczna Nr 1'" [address]="'ul. Hetmańska 21, 35-001 Rzeszów'"
-    [estimatedVisitors]="45" [waitingTime]="150"></app-clinic-card>
-  <app-clinic-card [clinicName]="'Przychodnia Specjalistyczna Nr 1'" [address]="'ul. Hetmańska 21, 35-001 Rzeszów'"
-    [estimatedVisitors]="45" [waitingTime]="150"></app-clinic-card>
-  <app-clinic-card [clinicName]="'Przychodnia Specjalistyczna Nr 1'" [address]="'ul. Hetmańska 21, 35-001 Rzeszów'"
-    [estimatedVisitors]="45" [waitingTime]="150"></app-clinic-card>
-  <app-clinic-card [clinicName]="'Przychodnia Specjalistyczna Nr 1'" [address]="'ul. Hetmańska 21, 35-001 Rzeszów'"
-    [estimatedVisitors]="45" [waitingTime]="150"></app-clinic-card>
-  <app-clinic-card [clinicName]="'Przychodnia Specjalistyczna Nr 1'" [address]="'ul. Hetmańska 21, 35-001 Rzeszów'"
-    [estimatedVisitors]="45" [waitingTime]="150"></app-clinic-card>
+  @for (clinic of filteredClinics(); track $index) {
+  <app-clinic-card [clinicName]="clinic.name" [address]="clinic.address" [estimatedVisitors]="clinic.estimatedVisitors"
+    [waitingTime]="clinic.waitingTime"></app-clinic-card>
+  } @empty {
+  <div class="mt-clinic-list__empty">
+    <p>Brak przychodni spełniających warunki</p>
+  </div>
+  }
 </div>
