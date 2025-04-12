@@ -1,0 +1,25 @@
+software =
+{
+        version = "0.1.0";
+        description = "Firmware update";
+
+        hardware-compatibility: [ "1.0" ];
+
+        files: (
+                {
+									filename = "medilab-image.rootfs.tar.zst";
+									type = "archive";
+									device = "/dev/update";
+									filesystem = "ext4";
+									preserve-attributes = true;
+									path = "/";
+                }
+        );
+
+        scripts: (
+                {
+									filename = "update.sh";
+									type = "shellscript";
+                }
+        );
+}

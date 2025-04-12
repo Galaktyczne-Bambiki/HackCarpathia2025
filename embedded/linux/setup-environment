@@ -46,7 +46,6 @@ LAYERS=" \
     $CWD/sources/meta-rockchip \
     $CWD/sources/meta-openembedded/meta-python \
     $CWD/sources/meta-openembedded/meta-networking \
-    $CWD/sources/meta-openembedded/meta-gnome \
     $CWD/sources/meta-swupdate \
     $CWD/sources/meta-openembedded/meta-filesystems \
     $CWD/sources/meta-virtualization \
