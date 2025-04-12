@@ -1,20 +1,20 @@
 <p-floatlabel variant="in">
   <p-iconfield>
     <p-inputicon class="pi pi-search" />
-    <input
-      class="mt-clinic-list__search"
-      pInputText
-      id="in_label"
-      [(ngModel)]="searchValue"
-      autocomplete="off"
-    />
+    <input class="mt-clinic-list__search" pInputText id="in_label" [(ngModel)]="searchValue" autocomplete="off" />
   </p-iconfield>
   <label for="in_label">Szukaj</label>
 </p-floatlabel>
 
+<p-floatlabel style="display: flex; flex-direction: column;" variant="in">
+  <p-multiselect id="in_label" [(ngModel)]="selectedTypes" [options]="typesOptions()" optionLabel="name" filter
+    styleClass="w-full" />
+  <label for="in_label">Typy zabiegów</label>
+</p-floatlabel>
+
 <div class="mt-clinic-list__container">
   @for (clinic of filteredClinics(); track $index) {
-  <app-clinic-card [clinicDetails]="clinic"></app-clinic-card>
+  <app-clinic-card [clinicDetails]="clinic" (clinicClicked)="clinicClicked.emit($event)"></app-clinic-card>
   } @empty {
   <div class="mt-clinic-list__empty">
     <p>Brak przychodni spełniających warunki</p>
