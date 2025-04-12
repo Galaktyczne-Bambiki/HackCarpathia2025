@@ -1,4 +1,29 @@
-<p-dialog [header]="clinicDetails()?.name" [modal]="true" [visible]="visible()"
-  (visibleChange)="visibleChange.emit($event)" [dismissableMask]="true">
-  <span class="p-text-secondary block mb-8"></span>
+<p-dialog
+  [header]="clinicDetails()?.name"
+  [modal]="true"
+  [visible]="visible()"
+  (visibleChange)="visibleChange.emit($event)"
+  [style]="{ width: '800px' }"
+  [dismissableMask]="true"
+>
+  <div>
+    <div class="mt-dialog__procedure-types">
+      Usługi: @for(type of clinicDetails()?.availableProcedureTypes; track type)
+      {
+      <p-tag class="mt-dialog__tag" [value]="type" />
+      }
+    </div>
+    <div class="mt-dialog__chart-title">
+      <span class="pi pi-clock"></span>
+      Prognozowane natężenie ruchu:
+    </div>
+    <div class="mt-dialog__chart-wrapper">
+      <p-chart
+        class="mt-dialog__chart"
+        type="bar"
+        [data]="basicData"
+        [options]="basicOptions"
+      />
+    </div>
+  </div>
 </p-dialog>
