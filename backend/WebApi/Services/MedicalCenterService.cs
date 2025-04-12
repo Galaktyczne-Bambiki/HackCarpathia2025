@@ -49,4 +49,19 @@ public class MedicalCenterService
             .FirstAsync(e => e.Id == id && e.Procedures.Any(x => x.Name == type));
         return new MedicalCentersResponse(entity.Id, entity.Name, new Location(entity.Location.Longitude, entity.Location.Latitude), TrafficStatus.High, 12, entity.Address, entity.Phone, entity.Procedures.Select(x => x.Name).ToList(), new OpeningHours(entity.OpeningHours.DayOfWeek, entity.OpeningHours.From, entity.OpeningHours.To));
     }
+
+    public async Task AddNewTraffic(EnterTrafficRequest request)
+    {
+        var medicalCenter = await _context.MedicalCenters
+            .Include(e => e.Traffic)
+            .FirstAsync(e => e.Id == request.MedicalCenterId);
+        
+        medicalCenter.Traffic.Add(new Traffic()
+        {
+            TimeStamp = DateTime.UtcNow,
+            Visitors = request.CurrentVisitors
+        });
+        
+        await _context.SaveChangesAsync();
+    }
 }
