@@ -1,43 +1,41 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+  signal,
+} from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { ClinicDetilsDialogComponent } from '../clinic-detils-dialog/clinic-detils-dialog.component';
+import { TagModule } from 'primeng/tag';
+import { ClinicDetails } from '../clinic-list/clinic-list.types';
 
 @Component({
   selector: 'app-clinic-card',
-  imports: [ButtonModule, CardModule],
-  template: `
-    <p-card>
-      <ng-template #title> {{ clinicName() }} </ng-template>
-      <ng-template #subtitle> {{ address() }} </ng-template>
-      <div class="mt-card__info">
-        <div class="mt-card__info-box">
-          <span class="pi pi-users"></span>
-          <span class="mt-card__info-text">Szacowana liczba osób:</span>
-          <span class="mt-card__estimated-value">{{
-            estimatedVisitors()
-          }}</span>
-        </div>
-        <div class="mt-card__info-box">
-          <span class="pi pi-clock"></span>
-          <span class="mt-card__info-text">Szacowany czas oczekiwania:</span>
-          <span class="mt-card__estimated-value"
-            >{{ waitingTime() }} minut</span
-          >
-        </div>
-      </div>
-      <ng-template #footer>
-        <div class="flex gap-4 mt-1">
-          <p-button label="Szczegóły" />
-        </div>
-      </ng-template>
-    </p-card>
-  `,
+  imports: [ButtonModule, CardModule, ClinicDetilsDialogComponent, TagModule],
+  templateUrl: './clinic-card.component.html',
   styleUrl: './clinic-card.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClinicCardComponent {
-  clinicName = input<string>();
-  address = input<string>();
-  estimatedVisitors = input<number>();
-  waitingTime = input<number>();
+  clinicDetails = input<ClinicDetails>();
+  dialogVisible = signal<boolean>(false);
+
+  iconColor = computed(() => {
+    if (this.clinicDetails()?.trafficStatus === 'medium')
+      return `color: var(--p-tag-warn-color)`;
+
+    if (this.clinicDetails()?.trafficStatus === 'high')
+      return `color: var(--p-tag-danger-color)`;
+
+    if (this.clinicDetails()?.trafficStatus === 'veryHigh')
+      return `color: var(--p-tag-danger-color)`;
+
+    return `color: var(--p-tag-success-color)`;
+  });
+
+  showDetails() {
+    this.dialogVisible.set(true);
+  }
 }

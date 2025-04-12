@@ -3,7 +3,7 @@
 }
 
 .mt-card__info-text {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
 }
 
@@ -11,8 +11,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 8px 0;
-  gap: 8px;
+  padding: 8px 0 16px;
+  gap: 12px;
 }
 
 .mt-card__info-box {
@@ -23,6 +23,18 @@
 }
 
 .mt-card__estimated-value {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.mt-card__procedure-types {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 14px;
+  gap: 8px;
+}
+
+.mt-card__tag {
   font-size: 12px;
-  font-weight: 600;
 }
