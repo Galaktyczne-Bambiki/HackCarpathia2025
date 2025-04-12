@@ -19,7 +19,15 @@ builder.Services.AddRateLimiter(options =>
     });
 });
 
-builder.Services.AddOpenApi();
+builder.Services.AddOpenApi(opt =>
+{
+    opt.AddDocumentTransformer((document, _, _) =>
+    {
+        document.Servers = [];
+
+        return Task.CompletedTask;
+    });
+});
 builder.Services.AddDbContextPool<DatabaseContext>((provider, optionsBuilder) =>
 {
     optionsBuilder.EnableSensitiveDataLogging();
