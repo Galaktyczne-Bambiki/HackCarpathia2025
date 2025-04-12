@@ -4,7 +4,7 @@ on: workflow_dispatch
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: web-api
-  NAMESPACE: Galaktyczne-Bambiki
+  NAMESPACE: ${{ github.repository_owner }} 
   REPOSITORY: ${{ github.event.repository.name }} 
   
 jobs:
