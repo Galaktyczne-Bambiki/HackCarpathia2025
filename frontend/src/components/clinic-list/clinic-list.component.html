@@ -1,3 +1,44 @@
-<p>
-  clinic-list works!
-</p>
+<p-floatlabel variant="in">
+  <p-iconfield>
+    <p-inputicon class="pi pi-search" />
+    <input
+      class="mt-clinic-list__search"
+      pInputText
+      id="in_label"
+      [(ngModel)]="searchValue"
+      autocomplete="off"
+    />
+  </p-iconfield>
+  <label for="in_label">Szukaj</label>
+</p-floatlabel>
+
+<app-clinic-card
+  [clinicName]="'Przychodnia Specjalistyczna Nr 1'"
+  [address]="'ul. Hetmańska 21, 35-001 Rzeszów'"
+  [estimatedVisitors]="45"
+  [waitingTime]="150"
+></app-clinic-card>
+<app-clinic-card
+  [clinicName]="'Przychodnia Specjalistyczna Nr 1'"
+  [address]="'ul. Hetmańska 21, 35-001 Rzeszów'"
+  [estimatedVisitors]="45"
+  [waitingTime]="150"
+></app-clinic-card>
+<app-clinic-card
+  [clinicName]="'Przychodnia Specjalistyczna Nr 1'"
+  [address]="'ul. Hetmańska 21, 35-001 Rzeszów'"
+  [estimatedVisitors]="45"
+  [waitingTime]="150"
+></app-clinic-card>
+<app-clinic-card
+  [clinicName]="'Przychodnia Specjalistyczna Nr 1'"
+  [address]="'ul. Hetmańska 21, 35-001 Rzeszów'"
+  [estimatedVisitors]="45"
+  [waitingTime]="150"
+></app-clinic-card>
+<app-clinic-card
+  [clinicName]="'Przychodnia Specjalistyczna Nr 1'"
+  [address]="'ul. Hetmańska 21, 35-001 Rzeszów'"
+  [estimatedVisitors]="45"
+  [waitingTime]="150"
+></app-clinic-card>

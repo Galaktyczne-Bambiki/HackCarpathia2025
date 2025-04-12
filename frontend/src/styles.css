@@ -1,7 +1,10 @@
+@import "primeicons/primeicons.css";
+
 body {
   font-family: "Parkinsans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
   margin: 0;
+  background-color: var(--p-form-field-background);
 }
