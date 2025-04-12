@@ -56,12 +56,12 @@ export class MapComponent implements OnInit {
   })
 
   ngOnInit(): void {
-    // navigator.geolocation.getCurrentPosition((position) => {
-    //   this.center = {
-    //     lat: position.coords.latitude,
-    //     lng: position.coords.longitude,
-    //   };
-    // });
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.center = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+    });
   }
 
   handleMarkerClick(event: google.maps.MapMouseEvent, elem: HTMLElement) {
