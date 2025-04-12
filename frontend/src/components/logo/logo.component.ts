@@ -6,8 +6,4 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./logo.component.css'],
   standalone: true,
 })
-export class LogoComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
-}
+export class LogoComponent {}
