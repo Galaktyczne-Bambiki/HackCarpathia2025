@@ -7,6 +7,7 @@ import { InputIcon } from 'primeng/inputicon';
 import { IconFieldModule } from 'primeng/iconfield';
 import { ClinicDetails } from './clinic-list.types';
 import { DialogModule } from 'primeng/dialog';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @Component({
   selector: 'app-clinic-list',
@@ -21,17 +22,28 @@ import { DialogModule } from 'primeng/dialog';
     InputIcon,
     IconFieldModule,
     DialogModule,
+    MultiSelectModule,
 ],
 })
 export class ClinicListComponent {
   searchValue = signal('');
   clinics = input.required<ClinicDetails[]>();
   clinicClicked = output<ClinicDetails>();
+  selectedTypes = signal<{ name: string }[]>([])
+  typesOptions = computed(() => Array.from(new Set(this.clinics().flatMap(clinic => clinic.availableProcedureTypes))).map(type => ({
+    name: type
+  })))
   filteredClinics = computed(() =>
     this.clinics().filter((clinic) =>
-      clinic.name
-        .toLocaleLowerCase()
-        .includes(this.searchValue().toLocaleLowerCase())
+      {
+        const hasType = this.selectedTypes().length === 0
+          ? true
+          : clinic.availableProcedureTypes.some(type => this.selectedTypes().map(x => x.name).includes(type))
+
+        return clinic.name
+          .toLocaleLowerCase()
+          .includes(this.searchValue().toLocaleLowerCase()) && hasType
+      } 
     )
   );
 }

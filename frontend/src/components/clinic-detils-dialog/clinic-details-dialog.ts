@@ -1,7 +1,7 @@
 import { trafficStatus } from '../clinic-list/clinic-list.types';
 
 export type HourlyTraffic = {
-  hour: string;
+  hour: number;
   trafficStatus: trafficStatus;
   totalVisitors: number;
 };

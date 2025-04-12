@@ -8,6 +8,8 @@ import environment from '../../environments/environment';
 import { ClinicListComponent } from '../../components/clinic-list/clinic-list.component';
 import { ClinicDetails } from '../../components/clinic-list/clinic-list.types';
 import { ClinicDetilsDialogComponent } from '../../components/clinic-detils-dialog/clinic-detils-dialog.component';
+import { clinics } from '../../mocks';
+import { ascend } from 'ramda'
 
 type ClinicMarker = {
   lat: number;
@@ -41,108 +43,7 @@ export class MapComponent implements OnInit {
     lng: 21.9983901,
   };
   zoom = 16;
-  clinics = signal<ClinicDetails[]>([
-    {
-      id: 'id-1',
-      name: 'Przychodnia Specjalistyczna Nr 1',
-      address: 'ul. Hetmańska 21, 35-001 Rzeszów',
-      estimatedVisitors: 20,
-      waitingTime: 110,
-      availableProcedureTypes: ['dietetyk', 'okulista', 'kardiolog'],
-      trafficStatus: 'medium',
-      phoneNumber: '+48 123 123 123',
-      openingHours: [
-        {
-          days: [1, 2, 3, 4, 5],
-          openHour: '7:00',
-          closeHour: '16:00',
-        },
-        {
-          days: [6],
-          openHour: '7:00',
-          closeHour: '12:00',
-        },
-      ],
-      lat: 50.027666,
-      lng: 21.9983901,
-    },
-    {
-      id: 'id-2',
-      name: 'Przychodnia Specjalistyczna Nr 2',
-      address: 'ul. Hetmańska 21, 35-001 Rzeszów',
-      estimatedVisitors: 60,
-      waitingTime: 240,
-      availableProcedureTypes: ['dietetyk', 'okulista', 'kardiolog'],
-      trafficStatus: 'high',
-      phoneNumber: '+48 123 123 123',
-      openingHours: [
-        {
-          days: [1, 2, 3, 4, 5],
-          openHour: '7:00',
-          closeHour: '16:00',
-        },
-      ],
-      lat: 50.028666,
-      lng: 21.9993901,
-    },
-    {
-      id: 'id-3',
-      name: 'Przychodnia Specjalistyczna Nr 3',
-      address: 'ul. Hetmańska 21, 35-001 Rzeszów',
-      estimatedVisitors: 5,
-      waitingTime: 30,
-      availableProcedureTypes: ['dietetyk', 'okulista', 'kardiolog'],
-      trafficStatus: 'low',
-      phoneNumber: '+48 123 123 123',
-      openingHours: [
-        {
-          days: [1, 2, 3, 4, 5],
-          openHour: '7:00',
-          closeHour: '16:00',
-        },
-      ],
-      lat: 50.029666,
-      lng: 22.0003901,
-    },
-    {
-      id: 'id-4',
-      name: 'Przychodnia Specjalistyczna Nr 3',
-      address: 'ul. Hetmańska 21, 35-001 Rzeszów',
-      estimatedVisitors: 5,
-      waitingTime: 30,
-      availableProcedureTypes: ['dietetyk', 'okulista', 'kardiolog'],
-      trafficStatus: 'low',
-      phoneNumber: '+48 123 123 123',
-      openingHours: [
-        {
-          days: [1, 2, 3, 4, 5],
-          openHour: '7:00',
-          closeHour: '16:00',
-        },
-      ],
-      lat: 50.030666,
-      lng: 22.0013901,
-    },
-    {
-      id: 'id-5',
-      name: 'Przychodnia Specjalistyczna Nr 3',
-      address: 'ul. Hetmańska 21, 35-001 Rzeszów',
-      estimatedVisitors: 5,
-      waitingTime: 30,
-      availableProcedureTypes: ['dietetyk', 'okulista', 'kardiolog'],
-      trafficStatus: 'low',
-      phoneNumber: '+48 123 123 123',
-      openingHours: [
-        {
-          days: [1, 2, 3, 4, 5],
-          openHour: '7:00',
-          closeHour: '16:00',
-        },
-      ],
-      lat: 50.031666,
-      lng: 22.0023901,
-    },
-  ]);
+  clinics = signal<ClinicDetails[]>(clinics.sort(ascend(item => item.waitingTime)));
   markers = computed<ClinicMarker[]>(() =>
     this.clinics().map((item) => {
       const icon = document.createElement('i');
