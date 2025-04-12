@@ -1,7 +1,7 @@
 /// <reference path="../.env.d.ts" />
 
 export default {
-    googleMapsApiKey: import.meta.env.NG_APP_GOOGLE_MAPS_KEY,
-    mapId: import.meta.env.NG_APP_GOOGLE_MAP_ID,
+    googleMapsApiKey: 'AIzaSyB17fX8g55pbPqcTbLOBsW7zo-E1_N5hy0',
+    mapId: '9f58179fb59ca67c',
 
 }
