@@ -40,6 +40,8 @@ IMAGE_INSTALL += " \
   bluez5 \
   python3-bleak \
   linux-firmware \
+  scanner-app \
+  udev-extra-rules \
 "
 
 EXTRA_IMAGE_FEATURES = " \
