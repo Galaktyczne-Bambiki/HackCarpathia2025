@@ -14,13 +14,14 @@ import { TagModule } from 'primeng/tag';
 import { HourlyTraffic } from './clinic-details-dialog';
 import { ChartModule } from 'primeng/chart';
 import { isPlatformBrowser } from '@angular/common';
+import { DayRangePipe } from './day-range.pipe';
 
 @Component({
   selector: 'app-clinic-detils-dialog',
   templateUrl: './clinic-detils-dialog.component.html',
   styleUrls: ['./clinic-detils-dialog.component.css'],
   standalone: true,
-  imports: [DialogModule, TagModule, ChartModule],
+  imports: [DialogModule, TagModule, ChartModule, DayRangePipe],
 })
 export class ClinicDetilsDialogComponent implements AfterViewInit {
   clinicDetails = input<ClinicDetails>();
