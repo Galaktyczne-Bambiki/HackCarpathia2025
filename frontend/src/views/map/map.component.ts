@@ -1,24 +1,29 @@
-import { Component, OnInit, viewChild } from '@angular/core';
+import { Component, computed, OnInit, signal, viewChild } from '@angular/core';
 import { GoogleMap, GoogleMapsModule, MapInfoWindow,  } from '@angular/google-maps';
 import environment from '../../environments/environment';
+import { ClinicListComponent } from "../../components/clinic-list/clinic-list.component";
+import { ClinicDetails } from '../../components/clinic-list/clinic-list.types';
+import { ClinicDetilsDialogComponent } from "../../components/clinic-detils-dialog/clinic-detils-dialog.component";
 
 type ClinicMarker = {
   lat: number;
   lng: number;
   label: string;
   content: HTMLElement
+  id: string;
 }
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
-  imports: [GoogleMapsModule],
+  imports: [GoogleMapsModule, ClinicListComponent, ClinicDetilsDialogComponent],
   standalone: true,
 })
 export class MapComponent implements OnInit {
   map = viewChild.required(GoogleMap)
   infoWindow = viewChild<MapInfoWindow>('infoWindow')
+  clinicToShow = signal<ClinicDetails | null>(null);
 
   options: google.maps.MapOptions = {
     mapId: environment.mapId,
@@ -32,28 +37,76 @@ export class MapComponent implements OnInit {
     lng: 21.9983901
   }
   zoom = 16
-  markers: ClinicMarker[] = [
-    { lat: 50.027666, lng: 21.9983901, label: 'A' },
-    { lat: 50.028666, lng: 21.9993901, label: 'B' },
-    { lat: 50.029666, lng: 22.0003901, label: 'C' },
-    { lat: 50.030666, lng: 22.0013901, label: 'D' },
-    { lat: 50.031666, lng: 22.0023901, label: 'E' },
-    { lat: 50.032666, lng: 22.0033901, label: 'F' },
-    { lat: 50.033666, lng: 22.0043901, label: 'G' },
-    { lat: 50.034666, lng: 22.0053901, label: 'H' },
-    { lat: 50.035666, lng: 22.0063901, label: 'I' },
-    { lat: 50.036666, lng: 22.0073901, label: 'J' }
-  ].map(item => {
+  clinics = signal<ClinicDetails[]>([
+    {
+      id: 'id-1',
+      name: 'Przychodnia Specjalistyczna Nr 1',
+      address: 'ul. Hetmańska 21, 35-001 Rzeszów',
+      estimatedVisitors: 20,
+      waitingTime: 110,
+      availableProcedureTypes: ['dietetyk', 'okulista', 'kardiolog'],
+      trafficStatus: 'medium',
+      lat: 50.027666, lng: 21.9983901
+    },
+    {
+      id: 'id-2',
+      name: 'Przychodnia Specjalistyczna Nr 2',
+      address: 'ul. Hetmańska 21, 35-001 Rzeszów',
+      estimatedVisitors: 60,
+      waitingTime: 240,
+      availableProcedureTypes: ['dietetyk', 'okulista', 'kardiolog'],
+      trafficStatus: 'high',
+      lat: 50.028666, lng: 21.9993901
+    },
+    {
+      id: 'id-3',
+      name: 'Przychodnia Specjalistyczna Nr 3',
+      address: 'ul. Hetmańska 21, 35-001 Rzeszów',
+      estimatedVisitors: 5,
+      waitingTime: 30,
+      availableProcedureTypes: ['dietetyk', 'okulista', 'kardiolog'],
+      trafficStatus: 'low',
+      lat: 50.029666, lng: 22.0003901
+    },
+    {
+      id: 'id-4',
+      name: 'Przychodnia Specjalistyczna Nr 3',
+      address: 'ul. Hetmańska 21, 35-001 Rzeszów',
+      estimatedVisitors: 5,
+      waitingTime: 30,
+      availableProcedureTypes: ['dietetyk', 'okulista', 'kardiolog'],
+      trafficStatus: 'low',
+      lat: 50.030666, lng: 22.0013901
+    },
+    {
+      id: 'id-5',
+      name: 'Przychodnia Specjalistyczna Nr 3',
+      address: 'ul. Hetmańska 21, 35-001 Rzeszów',
+      estimatedVisitors: 5,
+      waitingTime: 30,
+      availableProcedureTypes: ['dietetyk', 'okulista', 'kardiolog'],
+      trafficStatus: 'low',
+      lat: 50.031666, lng: 22.0023901
+    },
+  ]);
+  markers = computed<ClinicMarker[]>(() => this.clinics().map(item => {
     const icon = document.createElement('i')
     icon.className = 'pi pi-map-marker'
     icon.style.color = 'var(--p-button-primary-background)'
     icon.style.fontSize = '2rem'
+    icon.style.backgroundColor = 'var(--p-card-background)'
+    icon.style.padding = '0.5rem'
+    icon.style.borderRadius = '50%'
+    icon.style.border = '2px solid var(--p-button-primary-background)'
 
     return {
-      ...item,
-      content: icon
+      label: item.name,
+      lat: item.lat,
+      lng: item.lng,
+      content: icon,
+      id: item.id,
     }
-  })
+  }))
 
   ngOnInit(): void {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -64,11 +117,16 @@ export class MapComponent implements OnInit {
     });
   }
 
-  handleMarkerClick(event: google.maps.MapMouseEvent, elem: HTMLElement) {
-    console.log(elem)
-    // this.infoWindow()?.open(elem)
+  handleClinicClick(clinic: ClinicDetails) {
+    this.map().panTo({ lat: clinic.lat, lng: clinic.lng })
+    this.clinicToShow.set(clinic)
+  }
+
+  handleMarkerClick(event: google.maps.MapMouseEvent, id: string) {
+    event.latLng && this.map().panTo(event.latLng.toJSON())
+
+    const clinic = this.clinics().find(item => item.id === id)
+
+    clinic && this.clinicToShow.set(clinic)
   }
 }
-
-
-// <i class="pi pi-check"></i>

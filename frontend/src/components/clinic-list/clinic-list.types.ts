@@ -8,4 +8,6 @@ export type ClinicDetails = {
   waitingTime: number;
   availableProcedureTypes: string[];
   trafficStatus: trafficStatus;
+  lat: number;
+  lng: number;
 };
