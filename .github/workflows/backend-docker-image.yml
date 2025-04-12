@@ -5,6 +5,7 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: web-api
   NAMESPACE: Galaktyczne-Bambiki
+  REPOSITORY: ${{ github.event.repository.name }} 
   
 jobs:
 
@@ -31,7 +32,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v5.7.0
       with:
-        images: ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ env.IMAGE_NAME }}
+        images: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}/${{ env.NAMESPACE }}/${{ env.IMAGE_NAME }}
         
     - name: Build and push Docker image
       id: push
