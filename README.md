@@ -1,4 +1,6 @@
-# HackCarpathia 2025
+# MediTrack (HackCarpathia 2025)
+
+![alt text](readme-images/MediTrack-logo.png)
 
 A web application that allows monitoring of queues and traffic levels in medical clinics across Rzeszów. Thanks to real-time data collection, it helps patients better plan their visits and avoid long waiting times.
 
@@ -13,10 +15,14 @@ Features:
 - Forecasting traffic intensity at different times of day
 - Suggestions for less crowded facilities and convenient appointment times
 
+## Project Architecture
+
+- frontend - Angular 19, NG Prime, Google Maps, Angular Query
+- backend: .NET C#,
+- hardware: gataway for scanning bluetooth devices
+
+## Screenshots from app:
+
 ![alt text](readme-images/image.png)
 
 ![alt text](readme-images/image-1.png)
-
-## frontend
-
-The frontend was developed using `Angular` v19, incorporating `Google Maps` for location-based features and the `NG Prime` component library to create an intuitive and user-friendly interface.
