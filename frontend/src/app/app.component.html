@@ -1,5 +1,7 @@
+@if (showApp()) {
 <div>
-  <app-logo class="mt-logo"></app-logo>
   <router-outlet></router-outlet>
   <app-clinic-list></app-clinic-list>
+  <app-logo class="mt-logo"></app-logo>
 </div>
+}
