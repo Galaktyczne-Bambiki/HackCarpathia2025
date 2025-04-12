@@ -1,6 +1,6 @@
 # MediTrack (HackCarpathia 2025)
 
-![alt text](readme-images/MediTrack-logo.png)
+<img src="readme-images/MediTrack-logo.png" alt="MediTrack" style="width:300px;"/>
 
 A web application that allows monitoring of queues and traffic levels in medical clinics across Rzeszów. Thanks to real-time data collection, it helps patients better plan their visits and avoid long waiting times.
 
@@ -23,6 +23,6 @@ Features:
 
 ## Screenshots from app:
 
-![alt text](readme-images/image.png)
+![MediTrack - main page](readme-images/image.png)
 
-![alt text](readme-images/image-1.png)
+![MediTrack - details](readme-images/image-1.png)
