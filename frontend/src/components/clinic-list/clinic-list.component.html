@@ -1,0 +1,23 @@
+<p-floatlabel variant="in">
+  <p-iconfield>
+    <p-inputicon class="pi pi-search" />
+    <input
+      class="mt-clinic-list__search"
+      pInputText
+      id="in_label"
+      [(ngModel)]="searchValue"
+      autocomplete="off"
+    />
+  </p-iconfield>
+  <label for="in_label">Szukaj</label>
+</p-floatlabel>
+
+<div class="mt-clinic-list__container">
+  @for (clinic of filteredClinics(); track $index) {
+  <app-clinic-card [clinicDetails]="clinic"></app-clinic-card>
+  } @empty {
+  <div class="mt-clinic-list__empty">
+    <p>Brak przychodni spełniających warunki</p>
+  </div>
+  }
+</div>

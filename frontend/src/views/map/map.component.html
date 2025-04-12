@@ -1,0 +1,7 @@
+<google-map #map width="100vw" height="100vh" [options]="options" [zoom]="zoom" [center]="center">
+    @for (marker of markers; track $index) {
+    <map-advanced-marker #markerElem [position]="{ lat: marker.lat, lng: marker.lng }" [title]="marker.label"
+        [content]="marker.content" (mapClick)="handleMarkerClick($event, markerElem)"></map-advanced-marker>
+    }
+    <map-info-window>Hello Google Maps</map-info-window>
+</google-map>
