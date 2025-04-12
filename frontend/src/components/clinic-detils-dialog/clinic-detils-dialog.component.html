@@ -1,0 +1,8 @@
+<p-dialog
+  [header]="clinicDetails()?.name"
+  [modal]="true"
+  [visible]="visible()"
+  (visibleChange)="visibleChange.emit($event)"
+>
+  <span class="p-text-secondary block mb-8"></span>
+</p-dialog>

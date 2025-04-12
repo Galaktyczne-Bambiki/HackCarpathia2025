@@ -1,0 +1,36 @@
+<p-card>
+  <ng-template #title> {{ clinicDetails()?.name }} </ng-template>
+  <ng-template #subtitle> {{ clinicDetails()?.address }} </ng-template>
+  <div class="mt-card__info">
+    <div class="mt-card__procedure-types">
+      Usługi: @for(type of clinicDetails()?.availableProcedureTypes; track type)
+      {
+      <p-tag class="mt-card__tag" [value]="type" />
+      }
+    </div>
+    <div class="mt-card__info-box">
+      <span [style]="iconColor()" class="pi pi-users"></span>
+      <span class="mt-card__info-text">Szacowana liczba osób:</span>
+      <span class="mt-card__estimated-value">
+        ~{{ clinicDetails()?.estimatedVisitors }}
+      </span>
+    </div>
+    <div class="mt-card__info-box">
+      <span [style]="iconColor()" class="pi pi-clock"></span>
+      <span class="mt-card__info-text">Szacowany czas oczekiwania:</span>
+      <span class="mt-card__estimated-value">
+        ~{{ clinicDetails()?.waitingTime }} minut
+      </span>
+    </div>
+  </div>
+  <ng-template #footer>
+    <div class="flex gap-4 mt-1">
+      <p-button label="Szczegóły" (click)="showDetails()" />
+    </div>
+  </ng-template>
+</p-card>
+<app-clinic-detils-dialog
+  [clinicDetails]="clinicDetails()"
+  [visible]="dialogVisible()"
+  (visibleChange)="dialogVisible.set($event)"
+></app-clinic-detils-dialog>
