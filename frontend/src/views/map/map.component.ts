@@ -23,6 +23,9 @@ export class MapComponent implements OnInit {
   options: google.maps.MapOptions = {
     mapId: environment.mapId,
     disableDefaultUI: true,
+    colorScheme: window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? google.maps.ColorScheme.DARK
+      : google.maps.ColorScheme.LIGHT,
   }
   center: google.maps.LatLngLiteral = {
     lat: 50.027666,
