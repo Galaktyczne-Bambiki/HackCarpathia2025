@@ -6,8 +6,19 @@
   max-width: 460px;
   border-radius: 8px;
   background-color: var(--p-form-field-background);
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: calc(100vh - 40px);
 }
 
 .mt-clinic-list__search {
   width: 100%;
+}
+
+.mt-clinic-list__container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
 }
