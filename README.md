@@ -19,7 +19,7 @@ Features:
 
 - frontend - Angular 19, NG Prime, Google Maps, Angular Query
 - backend: .NET C#,
-- hardware: gataway for scanning bluetooth devices
+- hardware: gateway for scanning bluetooth devices
 
 ## Screenshots from app:
 
