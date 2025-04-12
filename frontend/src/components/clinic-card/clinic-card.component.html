@@ -25,12 +25,7 @@
   </div>
   <ng-template #footer>
     <div class="flex gap-4 mt-1">
-      <p-button label="Szczegóły" (click)="showDetails()" />
+      <p-button label="Szczegóły" (click)="clinicClicked.emit(clinicDetails()!)" />
     </div>
   </ng-template>
 </p-card>
-<app-clinic-detils-dialog
-  [clinicDetails]="clinicDetails()"
-  [visible]="dialogVisible()"
-  (visibleChange)="dialogVisible.set($event)"
-></app-clinic-detils-dialog>

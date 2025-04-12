@@ -1,12 +1,11 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LogoComponent } from '../components/logo/logo.component';
-import { ClinicListComponent } from '../components/clinic-list/clinic-list.component';
 import environment from '../environments/environment';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, LogoComponent, LogoComponent, ClinicListComponent],
+  imports: [RouterOutlet, LogoComponent, LogoComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
