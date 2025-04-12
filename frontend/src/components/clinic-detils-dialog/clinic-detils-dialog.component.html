@@ -7,11 +7,28 @@
   [dismissableMask]="true"
 >
   <div>
-    <div class="mt-dialog__procedure-types">
-      Usługi: @for(type of clinicDetails()?.availableProcedureTypes; track type)
-      {
-      <p-tag class="mt-dialog__tag" [value]="type" />
-      }
+    <div class="mt-dialog__clinic-info">
+      <div class="mt-dialog__procedure-types">
+        Usługi: @for(type of clinicDetails()?.availableProcedureTypes; track
+        type) {
+        <p-tag class="mt-dialog__tag" [value]="type" />
+        }
+      </div>
+      <div>
+        <span class="pi pi-phone"></span> Numer telefonu:
+        <b>
+          {{ clinicDetails()?.phoneNumber }}
+        </b>
+      </div>
+      <div class="mt-dialog__opening-hours-wrapper">
+        <div><span class="pi pi-calendar"></span> Godziny otwarcia:</div>
+        @for(openingHour of clinicDetails()?.openingHours; track openingHour){
+        <div class="mt-dialog__opening-hours">
+          {{ openingHour.days | dayRange }} {{ openingHour.openHour }} -
+          {{ openingHour.closeHour }}
+        </div>
+        }
+      </div>
     </div>
     <div class="mt-dialog__chart-title">
       <span class="pi pi-clock"></span>

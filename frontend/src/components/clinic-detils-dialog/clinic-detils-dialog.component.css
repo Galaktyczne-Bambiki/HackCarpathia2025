@@ -14,5 +14,22 @@
 
 .mt-dialog__chart-title {
   font-size: 18px;
-  padding: 16px 0 0;
+  padding: 24px 0 0;
+}
+
+.mt-dialog__clinic-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-weight: 400;
+}
+
+.mt-dialog__opening-hours {
+  font-weight: 600;
+}
+
+.mt-dialog__opening-hours-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }

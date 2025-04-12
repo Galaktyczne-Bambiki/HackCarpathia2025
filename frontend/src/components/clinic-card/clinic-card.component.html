@@ -10,14 +10,18 @@
     </div>
     <div class="mt-card__info-box">
       <span [style]="iconColor()" class="pi pi-users"></span>
-      <span class="mt-card__info-text">Szacowana liczba osób:</span>
+      <span [style]="iconColor()" class="mt-card__info-text"
+        >Szacowana liczba osób:</span
+      >
       <span class="mt-card__estimated-value">
         ~{{ clinicDetails()?.estimatedVisitors }}
       </span>
     </div>
     <div class="mt-card__info-box">
       <span [style]="iconColor()" class="pi pi-clock"></span>
-      <span class="mt-card__info-text">Szacowany czas oczekiwania:</span>
+      <span [style]="iconColor()" class="mt-card__info-text"
+        >Szacowany czas oczekiwania:</span
+      >
       <span class="mt-card__estimated-value">
         ~{{ clinicDetails()?.waitingTime }} minut
       </span>
@@ -25,7 +29,10 @@
   </div>
   <ng-template #footer>
     <div class="flex gap-4 mt-1">
-      <p-button label="Szczegóły" (click)="clinicClicked.emit(clinicDetails()!)" />
+      <p-button
+        label="Szczegóły"
+        (click)="clinicClicked.emit(clinicDetails()!)"
+      />
     </div>
   </ng-template>
 </p-card>
