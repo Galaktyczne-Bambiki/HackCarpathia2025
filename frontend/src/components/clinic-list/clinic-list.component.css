@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 8px;
+  max-width: 460px;
+  border-radius: 8px;
+  background-color: var(--p-form-field-background);
+}
+
+.mt-clinic-list__search {
+  width: 100%;
+}

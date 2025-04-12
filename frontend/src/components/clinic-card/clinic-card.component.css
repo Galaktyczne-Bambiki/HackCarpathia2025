@@ -1,0 +1,28 @@
+:host {
+  display: block;
+}
+
+.mt-card__info-text {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.mt-card__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 0;
+  gap: 8px;
+}
+
+.mt-card__info-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.mt-card__estimated-value {
+  font-size: 12px;
+  font-weight: 600;
+}
