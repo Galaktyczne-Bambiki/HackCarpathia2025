@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, input, output, signal } from '@angular/core';
 import { ClinicCardComponent } from '../clinic-card/clinic-card.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabel } from 'primeng/floatlabel';
@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { InputIcon } from 'primeng/inputicon';
 import { IconFieldModule } from 'primeng/iconfield';
 import { ClinicDetails } from './clinic-list.types';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-clinic-list',
@@ -19,57 +20,13 @@ import { ClinicDetails } from './clinic-list.types';
     FormsModule,
     InputIcon,
     IconFieldModule,
-  ],
+    DialogModule,
+],
 })
 export class ClinicListComponent {
   searchValue = signal('');
-  clinics = signal<ClinicDetails[]>([
-    {
-      id: 'id-1',
-      name: 'Przychodnia Specjalistyczna Nr 1',
-      address: 'ul. Hetmańska 21, 35-001 Rzeszów',
-      estimatedVisitors: 20,
-      waitingTime: 110,
-      availableProcedureTypes: ['dietetyk', 'okulista', 'kardiolog'],
-      trafficStatus: 'medium',
-    },
-    {
-      id: 'id-2',
-      name: 'Przychodnia Specjalistyczna Nr 2',
-      address: 'ul. Hetmańska 21, 35-001 Rzeszów',
-      estimatedVisitors: 60,
-      waitingTime: 240,
-      availableProcedureTypes: ['dietetyk', 'okulista', 'kardiolog'],
-      trafficStatus: 'high',
-    },
-    {
-      id: 'id-3',
-      name: 'Przychodnia Specjalistyczna Nr 3',
-      address: 'ul. Hetmańska 21, 35-001 Rzeszów',
-      estimatedVisitors: 5,
-      waitingTime: 30,
-      availableProcedureTypes: ['dietetyk', 'okulista', 'kardiolog'],
-      trafficStatus: 'low',
-    },
-    {
-      id: 'id-4',
-      name: 'Przychodnia Specjalistyczna Nr 3',
-      address: 'ul. Hetmańska 21, 35-001 Rzeszów',
-      estimatedVisitors: 5,
-      waitingTime: 30,
-      availableProcedureTypes: ['dietetyk', 'okulista', 'kardiolog'],
-      trafficStatus: 'low',
-    },
-    {
-      id: 'id-5',
-      name: 'Przychodnia Specjalistyczna Nr 3',
-      address: 'ul. Hetmańska 21, 35-001 Rzeszów',
-      estimatedVisitors: 5,
-      waitingTime: 30,
-      availableProcedureTypes: ['dietetyk', 'okulista', 'kardiolog'],
-      trafficStatus: 'low',
-    },
-  ]);
+  clinics = input.required<ClinicDetails[]>();
+  clinicClicked = output<ClinicDetails>();
   filteredClinics = computed(() =>
     this.clinics().filter((clinic) =>
       clinic.name

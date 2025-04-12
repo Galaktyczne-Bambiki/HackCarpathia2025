@@ -1,10 +1,7 @@
 import {
   Component,
-  computed,
   input,
-  linkedSignal,
   output,
-  signal,
 } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { ClinicDetails } from '../clinic-list/clinic-list.types';

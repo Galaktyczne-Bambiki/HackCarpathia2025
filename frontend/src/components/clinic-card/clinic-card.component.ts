@@ -3,22 +3,23 @@ import {
   Component,
   computed,
   input,
+  output,
   signal,
 } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { ClinicDetilsDialogComponent } from '../clinic-detils-dialog/clinic-detils-dialog.component';
 import { TagModule } from 'primeng/tag';
 import { ClinicDetails } from '../clinic-list/clinic-list.types';
 
 @Component({
   selector: 'app-clinic-card',
-  imports: [ButtonModule, CardModule, ClinicDetilsDialogComponent, TagModule],
+  imports: [ButtonModule, CardModule, TagModule],
   templateUrl: './clinic-card.component.html',
   styleUrl: './clinic-card.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClinicCardComponent {
+  clinicClicked = output<ClinicDetails>();
   clinicDetails = input<ClinicDetails>();
   dialogVisible = signal<boolean>(false);
 
