@@ -42,7 +42,10 @@ IMAGE_INSTALL += " \
   python3-requests \
   linux-firmware \
   scanner-app \
-  udev-extra-rules \
+  rfkill \
+  modemmanager \
+  networkmanager \
+  libqmi \
 "
 
 EXTRA_IMAGE_FEATURES = " \
