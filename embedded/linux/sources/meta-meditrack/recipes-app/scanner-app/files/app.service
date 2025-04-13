@@ -1,0 +1,10 @@
+[Unit]
+Description=App daemon
+
+[Service]
+Type=simple
+ExecStartPre=-/bin/bluetoothctl --agent menu power on
+ExecStart=/usr/bin/python3 /usr/bin/app.py
+
+[Install]
+WantedBy=multi-user.target
