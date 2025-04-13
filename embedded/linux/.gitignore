@@ -1,3 +1,4 @@
+.repo
 build/
 !sources/meta-meditrack/*
 sources/*

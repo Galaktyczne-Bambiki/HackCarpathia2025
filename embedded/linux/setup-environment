@@ -20,22 +20,13 @@ fi
 
 cat <<EOF >> $PWD/conf/local.conf
 
-MACHINE = "radxa-zero-3e-custom"
-DISTRO = "beaveros"
+MACHINE = "rock-5b-plus"
+DISTRO = "medios"
 INHERIT += "rm_work"
 
 # DL_DIR ?= "/adata/yocto-downloads"
 # SSTATE_DIR ?= "/adata/yocto-sstate-cache"
 # BB_GENERATE_MIRROR_TARBALLS = "1"
-# INHERIT += "buildhistory"
-# BUILDHISTORY_COMMIT = "1"
-
-## Additional fetures
-# include features/gps.inc
-# include features/can.inc
-# include features/spi.inc
-# include features/wifi-usb.inc
-# include features/containers.inc
 
 EOF
 
@@ -50,7 +41,7 @@ LAYERS=" \
     $CWD/sources/meta-openembedded/meta-filesystems \
     $CWD/sources/meta-virtualization \
     $CWD/sources/meta-clang \
-    $CWD/sources/meta-beaver \
+    $CWD/sources/meta-meditrack \
     $CWD/sources/meta-radxa \
 "
 
@@ -59,5 +50,3 @@ for layer in $LAYERS; do
     echo "Adding layer $layer_name"
     bitbake-layers add-layer $layer > /dev/null 2>&1
 done
-
-echo "To start building, run 'bitbake lab-image-minimal-update'"
