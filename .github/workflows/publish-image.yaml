@@ -1,0 +1,39 @@
+name: Image
+
+on:
+  push:
+    branches: ['master']
+
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image:  ghcr.io/galaktyczne-bambiki/hackcarpathia2025/yocto-builder:master 
+      credentials:
+       username: ${{ github.actor }}
+       password: ${{ secrets.github_token }}
+    steps:
+      - name: Setup git credentials
+        run: |
+          printf "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com" > ~/.git-credentials
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Sync sources
+        run: |
+          cd embedded/linux
+          repo init -u https://github.com/${{ github.repository }}
+          repo sync -j$(nproc)
+
+      - name: Setup Yocto env
+        run: |
+          cd embedded/linux
+          chmod +x setup-environment
+          ./setup-environment build
+
+      - name: Build image
+        run: |
+          cd embedded/linux
+          source sources/poky/oe-init-build-env
+          bitbake medilab-image-update
