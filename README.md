@@ -39,6 +39,5 @@ source sources/oe-core/oe-init-build-env build
 cd embedded/linux
 ./setup-environment build
 source sources/oe-core/oe-init-build-env build
-<<<<<<< HEAD
 bitbake medilab-image
 ```
