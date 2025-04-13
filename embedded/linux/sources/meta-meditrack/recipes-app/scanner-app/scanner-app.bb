@@ -24,4 +24,4 @@ FILES_${PN} = " \
   ${systemd_unitdir}/system/app.service \
 "
 
-RDEPENDS_${PN} = "python3-bleak"
+RDEPENDS_${PN} = "python3-bleak python3-requests"

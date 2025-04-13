@@ -39,6 +39,7 @@ IMAGE_INSTALL += " \
   e2fsprogs-resize2fs \
   bluez5 \
   python3-bleak \
+  python3-requests \
   linux-firmware \
   scanner-app \
   udev-extra-rules \
