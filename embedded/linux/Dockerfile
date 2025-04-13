@@ -4,6 +4,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN \
     apt update && \
+    apt upgrade -yq && \
     apt install -yq gawk wget git diffstat unzip texinfo gcc \
     build-essential chrpath socat cpio python3 python3-pip \
     python3-pexpect xz-utils debianutils iputils-ping python3-git \
@@ -11,10 +12,8 @@ RUN \
     nano sudo lzop screen curl
 
 RUN curl https://storage.googleapis.com/git-repo-downloads/repo > /bin/repo && chmod a+x /bin/repo
-RUN groupadd github -g 1000
-RUN useradd -ms /bin/bash -p github github -u 1028 -g 1000 && \
-        usermod -aG sudo github && \
-        echo "github:github" | chpasswd
+RUN useradd --create-home --shell /bin/bash github  -u 1001 && \
+    chown -R github:github /home/github
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen
@@ -27,4 +26,4 @@ WORKDIR /home/github
 RUN git config --global user.email "build@example.com" && \
     git config --global user.name "Build" && \
     git config --global color.ui true && \
-    git config --global credential.helper 'store --file ~/.git-credentials'
+    git config --global credential.helper 'store --file /home/github/.git-credentials'

@@ -1,5 +1,11 @@
 name: Publish image
 
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/publish-image.yaml
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,24 +17,25 @@ jobs:
     steps:
       - name: Setup git credentials
         run: |
-          printf "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com" > ~/.git-credentials
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+          printf "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com" > /home/github/.git-credentials
+
+      - uses: actions/checkout@v4
+
       - name: Sync sources
+        working-directory: ./embedded/linux/
         run: |
-          cd embedded/linux
-          repo init -u https://github.com/${{ github.repository }}
+          repo init -u https://github.com/${{ github.repository }} -m embedded/linux/default.xml
           repo sync -j$(nproc)
 
       - name: Setup Yocto env
+        working-directory: ./embedded/linux/
         run: |
-          cd embedded/linux
           chmod +x setup-environment
           ./setup-environment build
 
       - name: Build image
+        working-directory: ./embedded/linux/
+        shell: bash
         run: |
-          cd embedded/linux
-          source sources/poky/oe-init-build-env
+          source sources/oe-core/oe-init-build-env build
           bitbake medilab-image-update

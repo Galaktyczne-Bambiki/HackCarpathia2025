@@ -1,6 +1,12 @@
 name: Yocto Builder Docker Image CI
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/publish-builder.yaml
+      - embedded/linux/Dockerfile
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: yocto-builder
